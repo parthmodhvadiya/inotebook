@@ -4,20 +4,7 @@ const fetchuser = require("../middleware/getUser");
 const Notes = require("../models/Notes");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
-
-//validation function
-const validate = (validations) => {
-  return async (req, res, next) => {
-    // sequential processing, stops running validations chain if one fails.
-    for (const validation of validations) {
-      const result = await validation.run(req);
-      if (!result.isEmpty()) {
-        return res.status(400).json({ errors: result.array() });
-      }
-    }
-    next();
-  };
-};
+const validate = require("../validation/validation");
 
 //To fetch all the notes of a user
 router.get("/fetchallnotes", fetchuser, async (req, res) => {

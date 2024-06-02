@@ -7,20 +7,7 @@ const JWT_SECRET = "ThisIsStrongPass";
 var jwt = require("jsonwebtoken");
 const fetchuser = require("../middleware/getUser");
 const user = require("../models/User");
-
-//Validation of email and password
-const validate = (validations) => {
-  return async (req, res, next) => {
-    // sequential processing, stops running validations chain if one fails.
-    for (const validation of validations) {
-      const result = await validation.run(req);
-      if (!result.isEmpty()) {
-        return res.status(400).json({ errors: result.array() });
-      }
-    }
-    next();
-  };
-};
+const validate=  require("../validation/validation")
 
 //To create new user with email, name and password
 routes.post(

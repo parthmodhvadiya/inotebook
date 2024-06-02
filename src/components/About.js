@@ -1,15 +1,10 @@
-import { React,useContext, useEffect } from 'react';
-import { UserContext } from '../context/notes/NoteState';
-const About = () => {
-  const userDetails = useContext(UserContext);
-  useEffect(() => {
-    userDetails.update();
-  })
-  
+import { React} from 'react';
+
+const About = () => {  
   return (
     
     <div>
-      I am  {userDetails.userDetails.username}
+      This is About page
       </div>
   )
 }
