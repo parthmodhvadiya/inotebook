@@ -33,16 +33,17 @@ router.post(
   async (req, res) => {
     try {
       const { title, description, tag } = req.body;
-
+      console.log(tag);
       const data = await User.findOne({ user: req.user.id }).select(
         "-password"
       );
       const note = new Notes({
+        tag,
         title,
         description,
-        tag,
         user: data.id,
       });
+      console.log(note);
       const saveNote = await note.save();
       res.json(saveNote);
     } catch (error) {
