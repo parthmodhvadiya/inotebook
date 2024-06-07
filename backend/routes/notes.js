@@ -8,7 +8,7 @@ const validate = require("../validation/validation");
 
 //To fetch all the notes of a user
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
-  try {
+  try { 
     const data = await User.findOne({ user: req.user.id }).select("-password");
     const notes = await Notes.find({ data: data.id });
     res.json(notes);

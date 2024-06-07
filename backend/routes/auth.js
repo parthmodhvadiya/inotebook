@@ -19,11 +19,12 @@ routes.post(
     }),
   ]),
   async (req, res, next) => {
+    let sucess = false
     try {
       //Check if user with this email exist or not
       let user = await User.findOne({ email: req.body.email });
       if (user) {
-        res.status(400).json({ msg: "This email address already exists" });
+        res.status(400).json({sucess, msg: "This email address already exists" });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -40,9 +41,11 @@ routes.post(
         id: User.id,
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      sucess= true
+      res.json({ sucess,authToken });
     } catch (error) {
-      res.status(500).send({ err: "Some Internal error occur" });
+      sucess = false
+      res.status(500).send({ sucess,err: "Some Internal error occur" });
     }
   }
 );
@@ -58,22 +61,24 @@ routes.post(
   ]),
   async (req, res, next) => {
     try {
+      let sucess = false
       const { email, password } = req.body;
       const user = await User.findOne({ email });
       if (!email) {
-        res.json({ error: "Please enter correct credentials" });
+        res.json({ sucess,error: "Please enter correct credentials" });
       }
       const Pass = await bcrypt.compare(password, user.password);
       if (!Pass) {
-        res.json({ error: "Please enter correct credentials" });
+        res.json({ sucess,error: "Please enter correct credentials" });
       }
       const data = {
         id: User.id,
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      sucess= true
+      res.json({ sucess, authToken });
     } catch (error) {
-      res.status(500).send({ err: "Some Internal error occur" });
+      res.status(500).send({ sucess,err: "Some Internal error occur" });
     }
   }
 );

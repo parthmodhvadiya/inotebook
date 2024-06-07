@@ -3,7 +3,7 @@ import NotesItem from "./NotesItem";
 import { UserContext } from "../context/notes/NoteState";
 import AddNote from "./AddNote";
 
-const Notes = () => {
+const Notes = (props) => {
   const initailNotes = useContext(UserContext);
   const { notes, getNote, EditNote } = initailNotes;
   useEffect(() => {
@@ -22,6 +22,7 @@ const Notes = () => {
         {
             EditNote(note.id,note.etitle,note.edescription,note.etag);
             refClose.current.click();
+            props.showAlert("Successfully Updated Your Note" , "success");
         }
   const onChange = (e)=>
     {
@@ -29,7 +30,7 @@ const Notes = () => {
     }
   return (
     <>
-      <AddNote />
+      <AddNote  showAlert={props.showAlert}/>
       <button
       ref={ref}
         type="button"
@@ -75,7 +76,7 @@ const Notes = () => {
             value={note.etitle||""}
             aria-describedby="emailHelp"
             onChange={onChange}
-          />
+          required/>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
@@ -88,6 +89,7 @@ const Notes = () => {
             name="edescription"
             className="form-control"
             onChange={onChange}
+            required
           />
         </div>
         
@@ -102,6 +104,7 @@ const Notes = () => {
             name="etag"
             className="form-control"
             onChange={onChange}
+
           />
         </div>
       </form>
@@ -115,7 +118,9 @@ const Notes = () => {
               >
                 Close
               </button>
-              <button type="button"  onClick={handleOnClick} className="btn btn-primary">
+              <button type="button" 
+              disabled={note.etitle.length<5||note.edescription.length<5}
+               onClick={handleOnClick} className="btn btn-primary">
                 Save changes
               </button>
             </div>
@@ -128,7 +133,7 @@ const Notes = () => {
         {notes.length===0 && "No note are Found"}
         </div>
         {notes.map((note) => {
-          return <NotesItem key={note._id} updateNote={updateNote} note={note} />;
+          return <NotesItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />;
         })}
       </div>
     </>

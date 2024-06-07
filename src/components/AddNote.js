@@ -1,14 +1,16 @@
 import {React,useContext, useState} from "react";
 import { UserContext } from "../context/notes/NoteState";
 
-const AddNote = () => {
+const AddNote = (props) => {
     const {AddNote} = useContext(UserContext);
 
-    const [note, setnote] = useState({title:"", description: "",tag:"personal"});
+    const [note, setnote] = useState({title:"", description: "",tag:""});
     const handleOnClick =(e)=>
         {
             e.preventDefault();
             AddNote(note);
+            setnote({title:"", description: "",tag:""})
+            props.showAlert("Successfully Your Note has been added" , "success");
         }
     const onChange = (e)=>
         {
@@ -27,8 +29,10 @@ const AddNote = () => {
             className="form-control"
             id="title"
             name="title"
+            value={note.title}
             aria-describedby="emailHelp"
             onChange={onChange}
+            required
           />
         </div>
         <div className="mb-3">
@@ -39,8 +43,10 @@ const AddNote = () => {
             type="text"
             id="desc"
             name="description"
+            value={note.description}
             className="form-control"
             onChange={onChange}
+            required
           />
         </div>
         
@@ -52,11 +58,12 @@ const AddNote = () => {
             type="text"
             id="tag"
             name="tag"
+            value={note.tag}
             className="form-control"
             onChange={onChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary" onClick={handleOnClick}>
+        <button type="submit" disabled={note.title.length<5||note.description.length<5} className="btn btn-primary" onClick={handleOnClick}>
           Submit
         </button>
       </form>
