@@ -5,7 +5,7 @@ function UserProvider({ children }) {
   const url = "http://localhost:8000";
   const initailNotes= [];
   const [notes,setnotes] = useState(initailNotes);
-
+  const [user,setuser] = useState({name: "",email:""});
   const getNote = async ()=>
     {
       //Api fatch
@@ -80,8 +80,20 @@ function UserProvider({ children }) {
       }
       setnotes(newNotes);
     }
+    const getUser = async ()=>
+      {
+        const response = await fetch(`${url}/api/auth/getuser`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token" : localStorage.getItem('token')
+          }
+        });
+        const json = await response.json();
+        setuser({name:json.name,email:json.email});
+      }
   return (
-    <UserContext.Provider value={{notes,AddNote,DeleteNote,EditNote,getNote}}>
+    <UserContext.Provider value={{user,notes,AddNote,DeleteNote,EditNote,getNote,getUser}}>
         {children}
     </UserContext.Provider>
   );
