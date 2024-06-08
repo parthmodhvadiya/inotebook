@@ -38,7 +38,6 @@ function UserProvider({ children }) {
   //Delete a existing note
   const DeleteNote = async (id)=>
     {
-      console.log(id);
       const response = await fetch(`${url}/api/notes/deletenote/${id}`, {
         method: "DELETE",
         headers: {
