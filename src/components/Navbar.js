@@ -5,7 +5,7 @@ import { UserContext } from "../context/notes/NoteState";
 const Navbar = (props) => {
   const location = useLocation();
   let navigate = useNavigate();
-  const {user,getUser} = useContext(UserContext);
+  const {user,getUser,notes} = useContext(UserContext);
   const handleLogout = ()=>
     {
       localStorage.removeItem('token');
@@ -15,6 +15,9 @@ const Navbar = (props) => {
     const handleGetUser = ()=>
       {
         getUser();
+      }
+      const myStyle = {
+        margin: "0px 0px 00px -120px" 
       }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -78,9 +81,10 @@ const Navbar = (props) => {
           <button className="btn btn-primary mx-1 dropdown-toggle" onClick={handleGetUser} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Profile
           </button>
-          <ul className="dropdown-menu mr-5" style={{marginRight: "120px"}} aria-labelledby="navbarDropdownMenuLink">
-          <Link className="dropdown-item" href="#">Username : {user.name}</Link>
-          <Link className="dropdown-item" href="#">Email : {user.email}</Link>
+          <ul className="dropdown-menu mr-5" style={myStyle} aria-labelledby="navbarDropdownMenuLink">
+          <h6 className="dropdown-item" href="#">Username : {user.name}</h6>
+          <h6 className="dropdown-item" href="#">Email : {user.email}</h6>
+          <h6 className="dropdown-item" href="#">Number of Notes : {notes.length}</h6>
           <button className="btn btn-primary dropdown-item" href="#"
           onClick={handleLogout}>Log Out</button> 
           </ul>
