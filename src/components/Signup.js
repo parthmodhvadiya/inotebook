@@ -28,7 +28,8 @@ const Signup = (props) => {
             }
         }
     return (
-    <div className="container">
+    <div className="container mt-3">
+        <h2>Create your new account to use iNotebook</h2>
       <form onSubmit={handleOnClick}>
         <div className="form-group mb-3">
           <label htmlFor="name">Name</label>
@@ -74,7 +75,7 @@ const Signup = (props) => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn my-3 btn-primary">
           Submit
         </button>
       </form>

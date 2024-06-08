@@ -2,12 +2,21 @@ import { React, useContext, useEffect,useState,useRef } from "react";
 import NotesItem from "./NotesItem";
 import { UserContext } from "../context/notes/NoteState";
 import AddNote from "./AddNote";
+import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
+    let navigate = useNavigate();
   const initailNotes = useContext(UserContext);
   const { notes, getNote, EditNote } = initailNotes;
   useEffect(() => {
-    getNote();
+    if(localStorage.getItem('token'))
+        { 
+            getNote();
+        }
+    else
+    {
+        navigate('/login');
+    }
   }, []);
   
   const [note, setnote] = useState({id:"",etitle:"", edescription: "",etag:"personal"});
@@ -129,12 +138,14 @@ const Notes = (props) => {
       </div>
       <div className="row  my-3">
         <h2>Your Notes</h2>
-        <div className="container mx-2">
-        {notes.length===0 && "No note are Found"}
-        </div>
-        {notes.map((note) => {
+        
+        {notes.length=='0' ?<div className="container mx-2">
+        No note are Found
+        </div>:
+        notes.map((note) => {    
           return <NotesItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />;
-        })}
+        })
+        }
       </div>
     </>
   );

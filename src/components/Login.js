@@ -32,7 +32,8 @@ const Login = (props) => {
     }
   };
   return (
-    <div className="container">
+    <div className="container mt-3">
+        <h2>Login to excess your notes on iNotebook</h2>
       <form onSubmit={handleOnClick}>
         <div className="form-group mb-3">
           <label htmlFor="exampleInputEmail1">Email address</label>

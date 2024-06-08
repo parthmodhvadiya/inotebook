@@ -41,6 +41,7 @@ routes.post(
         id: User.id,
       };
       const authToken = jwt.sign(data, JWT_SECRET);
+      console.log(authToken);
       sucess= true
       res.json({ sucess,authToken });
     } catch (error) {
@@ -72,7 +73,7 @@ routes.post(
         res.json({ sucess,error: "Please enter correct credentials" });
       }
       const data = {
-        id: User.id,
+        id: user.id,
       };
       const authToken = jwt.sign(data, JWT_SECRET);
       sucess= true
@@ -86,7 +87,7 @@ routes.post(
 //To get user details
 routes.post("/getuser",fetchuser, async (req, res, next) => {
   try {
-    const user = await User.findOne({user: req.user.id}).select("-password");
+    const user = await User.findById(req.user.id).select("-password");
     res.send(user);
   } catch (error) {
     res.status(500).send({ errs: "Some Internal error occur" });

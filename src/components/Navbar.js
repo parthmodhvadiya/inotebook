@@ -1,8 +1,15 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const location = useLocation();
+  let navigate = useNavigate();
+  const handleLogout = ()=>
+    {
+      localStorage.removeItem('token');
+      navigate('/login');
+      props.showAlert("You have logout from your iNotebook", "success");
+    }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,7 +51,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
+          {!localStorage.getItem('token') ? <form className="d-flex">
             <Link
               to="/login"
               className="btn btn-primary mx-1 active"
@@ -61,9 +68,26 @@ const Navbar = () => {
             >
               Signup
             </Link>
-          </form>
+          </form>:<button 
+          onClick={handleLogout}
+              className="btn btn-primary mx-1" 
+              to="/signup">LogOUt</button>
+              
+}      <ul className="navbar-nav">
+        <li className="nav-item dropdown">
+        <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Profile {/* <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" className="rounded-circle"> */}
+        </Link>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <Link className="dropdown-item" href="#">Dashboard</Link>
+          <Link className="dropdown-item" href="#">Edit Profile</Link>
+          <Link className="dropdown-item" href="#">Log Out</Link>
         </div>
+      </li>   
+    </ul>  
+ </div>
       </div>
+
     </nav>
   );
 };

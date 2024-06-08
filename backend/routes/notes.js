@@ -9,8 +9,9 @@ const validate = require("../validation/validation");
 //To fetch all the notes of a user
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
   try { 
-    const data = await User.findOne({ user: req.user.id }).select("-password");
-    const notes = await Notes.find({ data: data.id });
+    const data = await User.findById(req.user.id).select("-password");
+    // const notes = await Notes.find({ data: data.id });
+    const notes = await Notes.find({user:data.id});
     res.json(notes);
   } catch (error) {
     res.status(500).send({ err: "Some Internal error occur" });
@@ -33,17 +34,14 @@ router.post(
   async (req, res) => {
     try {
       const { title, description, tag } = req.body;
-      console.log(tag);
-      const data = await User.findOne({ user: req.user.id }).select(
-        "-password"
-      );
+   
+      const data = await User.findById(req.user.id).select("-password");
       const note = new Notes({
         tag,
         title,
         description,
         user: data.id,
       });
-      console.log(note);
       const saveNote = await note.save();
       res.json(saveNote);
     } catch (error) {
@@ -63,7 +61,8 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
     return res.status(404).send("Not Found");
   }
 
-  const data = await User.findOne({ user: req.user.id }).select("-password");
+  
+  const data = await User.findById(req.user.id).select("-password");
   if (note.user.toString() !== data.id) {
     return res.status(401).send("Not Allowed");
   }
@@ -90,23 +89,23 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
 
 //To Delete notes of a user
 router.delete("/deletenote/:id", fetchuser, async (req, res) => {
-    // try{
+    try{
   const dataId = req.params.id;
 
-  let note = await Notes.findOne({id: dataId});
+  let note = await Notes.findById(dataId);
   if (!note) {
     return res.status(404).send("Not Found");
   }
 
-  const data = await User.findOne({ user: req.user.id }).select("-password");
+  const data = await User.findById(req.user.id).select("-password");
   if (note.user.toString() !== data.id) {
     return res.status(401).send("Not Allowed");
   }
   note = await Notes.findByIdAndDelete(dataId);
   res.json({"Sucess": "The note has been deleted","note": note});
-// } catch (error) {
-//     res.status(500).send({ err: "Some Internal error occur" });
-//   }
+} catch (error) {
+    res.status(500).send({ err: "Some Internal error occur" });
+  }
 });
 
 module.exports = router;

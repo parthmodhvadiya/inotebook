@@ -17,7 +17,6 @@ function App() {
               msg: message,
               type: type
           })
-          console.log(alert);
           setTimeout(()=>
           {
               setalert(null);
@@ -26,7 +25,7 @@ function App() {
   return (
     <>
       <UserProvider>
-        <Navbar />
+        <Navbar showAlert={showAlert}/>
         <Alert alert={alert}/>
         <div className="container">
           <Routes>

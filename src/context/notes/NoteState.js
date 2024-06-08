@@ -13,7 +13,7 @@ function UserProvider({ children }) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTcxMzQ5MTd9.9Z1zHyMnCi7fS26lrjvgFEXD7qJlrdQIRIUDF6EUuwk"
+          "auth-token" : localStorage.getItem('token')
         }
       });
       const json = await response.json();
@@ -28,7 +28,7 @@ function UserProvider({ children }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTcxMzQ5MTd9.9Z1zHyMnCi7fS26lrjvgFEXD7qJlrdQIRIUDF6EUuwk"
+          "auth-token" : localStorage.getItem('token')
         },
          body: JSON.stringify({title,description,tag}) 
       });
@@ -38,11 +38,12 @@ function UserProvider({ children }) {
   //Delete a existing note
   const DeleteNote = async (id)=>
     {
+      console.log(id);
       const response = await fetch(`${url}/api/notes/deletenote/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTcxMzQ5MTd9.9Z1zHyMnCi7fS26lrjvgFEXD7qJlrdQIRIUDF6EUuwk"
+          "auth-token" : localStorage.getItem('token')
         } 
       });
       const newNote = notes.filter((note)=>
@@ -59,7 +60,7 @@ function UserProvider({ children }) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTcxMzQ5MTd9.9Z1zHyMnCi7fS26lrjvgFEXD7qJlrdQIRIUDF6EUuwk"
+          "auth-token" : localStorage.getItem('token')
         },
          body: JSON.stringify({title,description,tag}), 
       });
