@@ -14,35 +14,69 @@ Welcome to iNotebook, an online notes management system built using the MERN sta
 **contact**
 
 ### Development Progress
-### Week 4
+### Week 1
+#### Day 1(27/05/2024): Project Initialization
+ - Set up the project repository on GitHub.
+ - Installed Node.js, MongoDB, and other necessary tools.
+ - Created initial project structure for both frontend (React) and backend (Node.js with Express).
 
-#### Day 1 (22/5/2024):
-- **Project Initialization:** Set up the project repository and created initial project structure with HTML, CSS, and JavaScript files.
-- **Research:** Researched best practices for creating a calendar application.
+#### Day 2(28/05/2024): Backend Setup
+ - Set up Express.js server.
+ - Configured MongoDB connection using Mongoose.
+ - Created basic routes for user registration and login.
+ - Implemented JWT authentication and middleware for protected routes.
 
-#### Day 2 (23/5/2024):
-- **Basic HTML Structure:** Developed the basic HTML structure for the calendar including divs for the header, month navigation, and the calendar grid.
-- **CSS Styling:** Started basic styling for the calendar layout and navigation buttons.
+#### Day 3(29/05/2024): User Authentication
+ - Added password encryption using bcrypt.
+ - Developed user registration and login functionality.
+ - Tested user authentication routes using Postman.
 
-#### Day 3 (24/5/2024):
-- **JavaScript Setup:** Initialized JavaScript variables and functions to handle the current date and month display.
-- **Current Date Display:** Implemented functionality to display the current month and year in the header.
+#### Day 4(30/05/2024): Frontend Initialization
+ - Set up the React project using Create React App.
+ - Created initial folder structure and installed dependencies.
+ - Designed basic UI for the home page, login, and registration forms.
 
-#### Day 4 (27/5/2024):
-- **Calendar Grid Generation:** Created a function to dynamically generate the days of the current month in the calendar grid.
-- **Adjacent Month Days:** Added functionality to include days from the previous and next months to ensure full week rows.
+#### Day 5(31/05/2024): Frontend Authentication Integration
+ - Integrated frontend with backend authentication API.
+ - Implemented login and registration forms.
+ - Added JWT token handling in frontend for maintaining sessions.
 
-#### Day 5 (28/5/2024):
-- **Month Navigation:** Developed navigation buttons to switch between months.
-- **Date Calculation:** Implemented date calculations to correctly update the calendar when navigating months.
+#### Day 6(01/06/2024): Note Management Backend
+ - Created Mongoose models for Notes.
+ - Developed CRUD API endpoints for notes (create, read, update, delete).
+ - Secured notes routes using JWT authentication middleware.
 
-#### Day 6 (29/5/2024):
-- **Jump to Date:** Added an input field and button to allow users to jump to a specific date by entering it in MM/YYYY format.
-- **Validation:** Implemented input validation for the date format.
+### Week 2
 
-#### Day 7 (30/5/2024):
-- **Event Management UI:** Designed the user interface for adding, viewing, and deleting events.
-- **Event Form:** Created a form for users to input event details including date, time, and description.
+#### Day 7(03/06/2024): Note Management Frontend
+ - Designed UI components for creating, viewing, and managing notes.
+ - Integrated frontend with backend CRUD API for notes.
+ - Implemented state management for handling notes data.
+
+
+#### Day 8(04/06/2024): Error Handling and Validation
+ - Added error handling middleware in Express.
+ - Implemented validation for user input on both frontend and backend.
+ - Displayed error messages and validation feedback in the UI.
+
+#### Day 9(05/06/2024): Styling and UI Improvements
+ - Applied styling to login, registration, and notes management pages using CSS.
+ - Improved user interface for better usability and aesthetics.
+ - Added responsive design to ensure compatibility with various devices.
+
+#### Day 10(06/06/2024): Testing and Debugging
+ - Conducted thorough testing of all functionalities.
+ - Fixed bugs and issues identified during testing.
+ - Refined code for better readability and maintainability.
+
+#### Day 11(07/06/2024): Deployment Preparation
+ - Prepared the application for deployment.
+ - Created production builds for both frontend and backend.
+ - Configured environment variables for deployment.
+
+#### Day 13(08/06/2024): Final Review 
+Conducted a final review of the project to ensure all features are working as expected.
+
 
 
 ### Features
