@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# 🌟iNotebook - Online Notes Management System🌟
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 Introduction
 
-## Available Scripts
+Welcome to iNotebook, an online notes management system built using the MERN stack. iNotebook allows users to securely upload, access, and manage their notes. This README provides an overview of the project, installation instructions, and usage details.
 
-In the project directory, you can run:
+### Table of Contents
+**Development Progress**
+**Features**
+**Technologies Used**
+**Installation**
+**Usage**
+**API Endpoints**
+**contact**
 
-### `npm start`
+### Development Progress
+### Week 4
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Day 1 (22/5/2024):
+- **Project Initialization:** Set up the project repository and created initial project structure with HTML, CSS, and JavaScript files.
+- **Research:** Researched best practices for creating a calendar application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Day 2 (23/5/2024):
+- **Basic HTML Structure:** Developed the basic HTML structure for the calendar including divs for the header, month navigation, and the calendar grid.
+- **CSS Styling:** Started basic styling for the calendar layout and navigation buttons.
 
-### `npm test`
+#### Day 3 (24/5/2024):
+- **JavaScript Setup:** Initialized JavaScript variables and functions to handle the current date and month display.
+- **Current Date Display:** Implemented functionality to display the current month and year in the header.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Day 4 (27/5/2024):
+- **Calendar Grid Generation:** Created a function to dynamically generate the days of the current month in the calendar grid.
+- **Adjacent Month Days:** Added functionality to include days from the previous and next months to ensure full week rows.
 
-### `npm run build`
+#### Day 5 (28/5/2024):
+- **Month Navigation:** Developed navigation buttons to switch between months.
+- **Date Calculation:** Implemented date calculations to correctly update the calendar when navigating months.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Day 6 (29/5/2024):
+- **Jump to Date:** Added an input field and button to allow users to jump to a specific date by entering it in MM/YYYY format.
+- **Validation:** Implemented input validation for the date format.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Day 7 (30/5/2024):
+- **Event Management UI:** Designed the user interface for adding, viewing, and deleting events.
+- **Event Form:** Created a form for users to input event details including date, time, and description.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Features
+ - User Authentication: Register and log in using a unique username and password.
+ - Token-Based Authentication: Maintains user sessions using JSON Web Tokens (JWT).
+ - Password Encryption: Securely encrypts user passwords.
+ - CRUD Operations: Create, read, update, and delete notes.
+ - MongoDB Database: Stores user data and notes.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Technologies Used
+ - MongoDB: NoSQL database for flexible and scalable data management.
+ - Express.js: Backend framework for handling server-side operations.
+ - React: Front-end library for building a dynamic and responsive user interface.
+ - Node.js: Runtime environment for running the server-side application.
+ - Installation
+   
+### Prerequisites
+**Node.js (v12 or higher)**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**MongoDB (Local or Atlas)**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ - Clone the Repository
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Copy code
+git clone [https://github.com/yourname/inotebook.git](https://github.com/parthmodhvadiya/inotebook/)
 
-## Learn More
+cd inotebook
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ - Backend Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 1. Navigate to the backend directory:
 
-### Code Splitting
+Copy code
+cd backend
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Copy code
+npm install
+Create a .env file in the backend directory and add the following environment variables:
 
-### Analyzing the Bundle Size
+plaintext
+Copy code
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+Start the backend server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Copy code
+npm start
+Frontend Setup
+Navigate to the frontend directory:
 
-### Making a Progressive Web App
+Copy code
+cd ../frontend
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Copy code
+npm install
+Start the frontend development server:
 
-### Advanced Configuration
+Copy code
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Usage
+Open your browser and navigate to http://localhost:3000.
 
-### Deployment
+Register a new account or log in with an existing account.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Create, read, update, and delete your notes.
 
-### `npm run build` fails to minify
+### API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Authentication
+
+ - Register: POST /api/auth/register
+ - Login: POST /api/auth/login
+
+2. Notes
+
+ - Get All Notes: GET /api/notes
+ - Create Note: POST /api/notes
+ - Update Note: PUT /api/notes/:id
+ - Delete Note: DELETE /api/notes/:id
+
+
+## Contact
+For any questions or suggestions, please reach out to [22it077@charusat.edu.in].
+
+---
+
+### Acknowledgments
+
+Thanks to everyone who provided feedback and suggestions during the development of this project.
